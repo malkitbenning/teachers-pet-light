@@ -11,7 +11,7 @@ function SaveFormButton({
   saveMessage,
   setSaveMessage,
 }) {
-  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-light-server.onrender.com";
   const endPoint = "/save-user-form-input";
   const formSubmission = {};
 

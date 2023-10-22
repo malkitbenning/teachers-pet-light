@@ -4,8 +4,7 @@ import LoginButton from "./LoginButton";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
-  const apiURL =
-    process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-light-server.onrender.com";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
@@ -25,7 +24,7 @@ function LoginForm() {
     setValidationError("");
 
     if (!username.trim()) {
-      setUsernameError("Enter a username");
+      setUsernameError("Enter a login name");
     }
 
     if (!password.trim()) {
@@ -51,9 +50,7 @@ function LoginForm() {
             if (data) {
               setValidationError(data.message);
             } else {
-              setValidationError(
-                "An error occurred while processing your request."
-              );
+              setValidationError("An error occurred while processing your request.");
             }
           });
         }
@@ -97,6 +94,7 @@ function LoginForm() {
                 required
                 id="username"
                 name="username"
+                autoComplete="current-username"
                 onChange={(event) => {
                   setUsername(event.target.value);
                   setUsernameError("");
@@ -115,6 +113,7 @@ function LoginForm() {
                 type="password"
                 required
                 id="password"
+                autoComplete="current-password"
                 name="password"
                 onChange={(event) => {
                   setPassword(event.target.value);

@@ -5,7 +5,7 @@ import appendices from "./data/appendices.json";
 import Appendices from "./Appendices";
 
 function Form() {
-  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-light-server.onrender.com";
   const endPoint = "/getQandA";
   const dataUrl = `${apiURL}${endPoint}`;
   const location = useLocation();

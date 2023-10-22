@@ -9,7 +9,7 @@ function LandingPage() {
   const teacherID = location.state.teacherID;
   const teacherUsername = location.state.teacherUsername;
   const [pupils, setPupils] = useState([]);
-  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-light-server.onrender.com";
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
 
