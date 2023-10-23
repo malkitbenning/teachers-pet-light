@@ -70,11 +70,6 @@ function LoginForm() {
         }
       })
 
-    if (data && data.teacherID) {
-      navigate("/landingPage", {
-        state: { teacherID: data.teacherID, teacherUsername: username },
-      });
-    }
   };
 
   return (
