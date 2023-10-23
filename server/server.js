@@ -25,8 +25,12 @@ const validateUser = require("./validate-user");
 const saveUserFormInput = require("./save-user-form-input");
 const getPupilRecord = require("./get-pupil-record");
 const getPupilAnswers = require("./get-pupil-answers");
+function sendAnything(req, res) {
+  res.status(200).json({ Message: "Anything" });
+}
 
 app.get("/getQandA", getQandA);
+app.get("/test", sendAnything);
 app.post("/fetch-pupil-data", fetchPupilData);
 app.delete("/delete-pupil", deletePupil);
 app.post("/restore-pupil", restorePupil);
