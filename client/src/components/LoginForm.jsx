@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import LoginButton from "./LoginButton";
 
 function LoginForm() {
+
+  const apiURL = process.env.REACT_APP_DEV_URL || "http://13.40.157.9/";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [validationError, setValidationError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const handleValidateUser = (event) => {
@@ -33,10 +34,41 @@ function LoginForm() {
       return;
     }
 
-    const data = {
-      teacherID: 5,
-    };
-    setIsLoading(false);
+    fetch(`${apiURL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        teacherUsername: username,
+        teacherPassword: password,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          setIsLoading(false);
+          return response.json().then((data) => {
+            if (data) {
+              setValidationError(data.message);
+            } else {
+              setValidationError("An error occurred while processing your request.");
+            }
+          });
+        }
+      })
+      .then((data) => {
+        setIsLoading(false);
+        if (data && data.teacherID) {
+          navigate("/landingPage", {
+            state: { teacherID: data.teacherID, teacherUsername: username },
+          });
+          return data.teacherID;
+        } else {
+          console.error("ID could not be found.");
+        }
+      })
 
     if (data && data.teacherID) {
       navigate("/landingPage", {
