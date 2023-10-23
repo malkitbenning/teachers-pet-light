@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/LandingPage.css";
 import PupilRow from "./PupilRow";
@@ -13,48 +13,45 @@ function LandingPage() {
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
 
-  useEffect(() => {
-    fetch(`${apiURL}/fetch-pupil-data`, {
-      method: "POST",
+  // useEffect(() => {
+  //   fetch(`${apiURL}/fetch-pupil-data`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ teacherID }),
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setPupils(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, [teacherID, apiURL]);
+
+  const deletePupil = (pupilId) => {
+    fetch(`${apiURL}/delete-pupil`, {
+      method: "DELETE",
+      body: JSON.stringify({ pupilID: pupilId }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ teacherID }),
     })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        return response.json();
-      })
-      .then((data) => {
-        setPupils(data);
+        setPupils((prevPupils) => prevPupils.filter((pupil) => pupil.pupil_id !== pupilId));
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("Error deleting pupil:", error);
       });
-  }, [teacherID, apiURL]);
-
-  const deletePupil = (pupilId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this pupil Record?");
-    if (confirmDelete) {
-      fetch(`${apiURL}/delete-pupil`, {
-        method: "DELETE",
-        body: JSON.stringify({ pupilID: pupilId }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          setPupils((prevPupils) => prevPupils.filter((pupil) => pupil.pupil_id !== pupilId));
-        })
-        .catch((error) => {
-          console.error("Error deleting pupil:", error);
-        });
-    }
   };
 
   const handleSort = (column) => {

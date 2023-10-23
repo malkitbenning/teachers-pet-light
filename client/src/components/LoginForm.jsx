@@ -1,9 +1,9 @@
-import "../styles/LoginForm.css";
 import React, { useState } from "react";
-import LoginButton from "./LoginButton";
 import { useNavigate } from "react-router-dom";
+import LoginButton from "./LoginButton";
 
 function LoginForm() {
+
   const apiURL = process.env.REACT_APP_DEV_URL || "http://13.40.157.9/";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +11,6 @@ function LoginForm() {
   const [passwordError, setPasswordError] = useState("");
   const [validationError, setValidationError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const handleValidateUser = (event) => {
@@ -24,11 +23,15 @@ function LoginForm() {
     setValidationError("");
 
     if (!username.trim()) {
-      setUsernameError("Enter a username");
+      setUsernameError("Enter a login name");
+      setIsLoading(false);
+      return;
     }
 
     if (!password.trim()) {
       setPasswordError("Enter a password");
+      setIsLoading(false);
+      return;
     }
 
     fetch(`${apiURL}/login`, {
@@ -67,10 +70,11 @@ function LoginForm() {
         }
       })
 
-      .catch((error) => {
-        setIsLoading(false);
-        console.error("Error:", error);
+    if (data && data.teacherID) {
+      navigate("/landingPage", {
+        state: { teacherID: data.teacherID, teacherUsername: username },
       });
+    }
   };
 
   return (
@@ -88,12 +92,14 @@ function LoginForm() {
               <span className="login--invalid">{validationError}</span>
             </div>
             <div className="field login--field">
-              <label htmlFor="username"></label>
+              <label htmlFor="username">Username</label>
               <input
                 type="text"
                 required
                 id="username"
                 name="username"
+                autoComplete="current-username"
+                value={username}
                 onChange={(event) => {
                   setUsername(event.target.value);
                   setUsernameError("");
@@ -107,12 +113,14 @@ function LoginForm() {
               <span className="login--invalid">{usernameError}</span>
             </div>
             <div className="field login--field">
-              <label htmlFor="password"></label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 required
                 id="password"
+                autoComplete="current-password"
                 name="password"
+                value={password}
                 onChange={(event) => {
                   setPassword(event.target.value);
                   setPasswordError("");
@@ -126,11 +134,12 @@ function LoginForm() {
               <span className="login--invalid">{passwordError}</span>
             </div>
             <LoginButton handleValidateUser={handleValidateUser} />
-            <div> {isLoading ? <p>Loading... Please Wait</p> : null}</div>
+            <div>{isLoading ? <p>Loading... Please Wait</p> : null}</div>
           </form>
         </div>
       </div>
     </>
   );
 }
+
 export default LoginForm;
