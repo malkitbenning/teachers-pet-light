@@ -9,7 +9,7 @@ function LandingPage() {
   const teacherID = location.state.teacherID;
   const teacherUsername = location.state.teacherUsername;
   const [pupils, setPupils] = useState([]);
-  const apiURL = process.env.REACT_APP_DEV_URL || "http://13.40.157.9";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://35.178.178.168";
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
 
