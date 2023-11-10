@@ -1,7 +1,7 @@
 [
   {
     "criterion_code": "1.1",
-    "question_text": "Criterion 1.1: Degree of VI - distance (corrected vision with both eyes open – see Vision loss reference table above)",
+    "question_text": "Degree of VI - distance (corrected vision with both eyes open – see Vision loss reference table above)",
     "answers": [
       { "answer_id": 1, "answer_text": "Does not have a vision impairment", "answer_score": 0 },
       {
@@ -28,7 +28,7 @@
   },
   {
     "criterion_code": "1.2",
-    "question_text": "Criterion 1.2: Degree of VI - near (corrected vision with both eyes open - see Vision loss reference table above )",
+    "question_text": "Degree of VI - near (corrected vision with both eyes open - see Vision loss reference table above )",
     "answers": [
       { "answer_id": 1, "answer_text": "Does not have a vision impairment", "answer_score": 0 },
       {
@@ -55,7 +55,7 @@
   },
   {
     "criterion_code": "2",
-    "question_text": "Criterion 2: Additional factors relating to VI",
+    "question_text": "Additional factors relating to VI",
     "answers": [
       {
         "answer_id": 1,
@@ -81,7 +81,7 @@
   },
   {
     "criterion_code": "3",
-    "question_text": "Criterion 3: Impact of the CYP’s VI on language and communication development and on access to learning and the curriculum (particularly English, mathematics and science)",
+    "question_text": "Impact of the CYP’s VI on language and communication development and on access to learning and the curriculum (particularly English, mathematics and science)",
     "answers": [
       {
         "answer_id": 1,
@@ -107,7 +107,7 @@
   },
   {
     "criterion_code": "4",
-    "question_text": "Criterion 4: Development of habilitation skills",
+    "question_text": "Development of habilitation skills",
     "answers": [
       {
         "answer_id": 1,
@@ -143,7 +143,7 @@
   },
   {
     "criterion_code": "5.1",
-    "question_text": "Criterion 5.1: Training and mentoring requirement",
+    "question_text": "Training and mentoring requirement",
     "answers": [
       {
         "answer_id": 1,
@@ -169,7 +169,7 @@
   },
   {
     "criterion_code": "5.2",
-    "question_text": "Criterion 5.2: Transition support (i.e. change of placement)",
+    "question_text": "Transition support (i.e. change of placement)",
     "answers": [
       {
         "answer_id": 1,
@@ -195,7 +195,7 @@
   },
   {
     "criterion_code": "6",
-    "question_text": "Criterion 6: support for effective use of specialist equipment by learner and key staff (may include CCTVs, LVAs, Braille, tactile and speech access and adaptation of print materials)",
+    "question_text": "support for effective use of specialist equipment by learner and key staff (may include CCTVs, LVAs, Braille, tactile and speech access and adaptation of print materials)",
     "answers": [
       {
         "answer_id": 1,
@@ -226,7 +226,7 @@
   },
   {
     "criterion_code": "7",
-    "question_text": "Criterion 7: Physical learning environment. NB factors affecting the quality of the acoustic and visual environment are outlined in the Appendix at 2.4",
+    "question_text": "Physical learning environment. NB factors affecting the quality of the acoustic and visual environment are outlined in the Appendix at 2.4",
     "answers": [
       {
         "answer_id": 1,
@@ -252,7 +252,7 @@
   },
   {
     "criterion_code": "8",
-    "question_text": "Criterion 8: Impact of the CYP’s VI on personal, social and emotional learning",
+    "question_text": "Impact of the CYP’s VI on personal, social and emotional learning",
     "answers": [
       {
         "answer_id": 1,
@@ -278,7 +278,7 @@
   },
   {
     "criterion_code": "9",
-    "question_text": "Criterion 9: Additional factors relating to family support (e.g. acceptance of VI; family speaks English as an additional language; LA as corporate parent)",
+    "question_text": "Additional factors relating to family support (e.g. acceptance of VI; family speaks English as an additional language; LA as corporate parent)",
     "answers": [
       {
         "answer_id": 1,
@@ -304,7 +304,7 @@
   },
   {
     "criterion_code": "10",
-    "question_text": "Criterion 10: Multi-agency liaison/role (including safeguarding)",
+    "question_text": "Multi-agency liaison/role (including safeguarding)",
     "answers": [
       {
         "answer_id": 1,

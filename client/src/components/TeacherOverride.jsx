@@ -69,39 +69,26 @@ function TeacherOverride({
         </thead>
         <tbody>
           <tr>
-            <td colSpan="6">
-              <h3>CYP calculated score</h3>
-            </td>
-            <td colSpan="4">
-              <span className="title">{totalScore}</span>
-            </td>
-          </tr>
-          <tr>
             <td colSpan="9">
-              <h2 className="title ">Teacher Adjustment</h2>
               <div>
                 <SupportAllocationTable />
               </div>
             </td>
           </tr>
           <tr>
-            <td colSpan="6" className="override-comment">
-              <h4 className="comment title">Teacher Adjustment Comment</h4>
-              <span className="title">
-                Evidence underpinning any professional adjustment made to the CYP’s matrix support allocation
-              </span>
+            <td colSpan="6">
+              <h3>CYP calculated total score</h3>
+            </td>
+            <td colSpan="4">
+              <span className="cyp-big-score">{totalScore}</span>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="6">
+              <h3>Teacher adjusted total score</h3>
+            </td>
 
-              <textarea
-                className="overrideCommentArea"
-                maxLength="255"
-                value={overrideComment}
-                onChange={(e) => setOverrideComment(e.target.value)}
-              ></textarea>
-            </td>
-            <td colSpan="2" className="overRide">
-              <h4>Teacher adjusted CYP total</h4>
-            </td>
-            <td colSpan="1" className="inputCell">
+            <td colSpan="4" className="inputCellBig">
               <input
                 className="inputOverrideScore"
                 value={overrideScore}
@@ -114,25 +101,32 @@ function TeacherOverride({
               />
             </td>
           </tr>
+
           <tr>
-            <td colSpan="9">
+            <td colSpan="8" className="override-comment">
+              <h3 className="title">Teacher Adjustment Comment</h3>
+              <span className="title">
+                Evidence underpinning any professional adjustment made to the CYP’s matrix support allocation
+              </span>
+
+              <textarea
+                className="overrideCommentArea"
+                maxLength="255"
+                value={overrideComment}
+                onChange={(e) => setOverrideComment(e.target.value)}
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="8">
               <h2 className="title ">Support Allocation</h2>
             </td>
           </tr>
           <tr>
-            <td colSpan="6" className="support-category">
-              <span className="comments"> Support Category</span>
-            </td>
-            <td colSpan="3">
-              <span className="title">{supportCategory}</span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="6">
-              <h3>Support</h3>
-            </td>
-            <td colSpan="3">
-              <span className="title">{supportAllocation}</span>
+            <td colSpan="8">
+              <span className="support-allocation-text">
+                {supportCategory} - {supportAllocation}
+              </span>
             </td>
           </tr>
         </tbody>

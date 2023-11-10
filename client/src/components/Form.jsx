@@ -143,10 +143,7 @@ function Form() {
         selectedAnswers={selectedAnswers}
         questions={questions}
         comments={comments}
-        // teacherID={teacherID}
         teacherName={teacherUsername}
-        // pupilID={editPupilID}
-        // setSavedPupilID={setSavedPupilID}
         pupilName={pupilName}
         date={date}
         overrideComment={overrideComment}
