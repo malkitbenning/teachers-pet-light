@@ -1,38 +1,24 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useLocation } from "react-router-dom";
 import ShowResult from "./ShowResult";
 import appendices from "./data/appendices.json";
+import questions from "./data/questions.json";
 import Appendices from "./Appendices";
 
 function Form() {
-  const apiURL = process.env.REACT_APP_DEV_URL || "https://35.178.178.168";
-  const endPoint = "/getQandA";
-  const dataUrl = `${apiURL}${endPoint}`;
-  const location = useLocation();
-  const teacherUsername = location.state.teacherUsername;
-  const [questions, setQuestions] = useState([]);
+  // const apiURL = process.env.REACT_APP_DEV_URL || "https://35.178.178.168";
+  // const endPoint = "/getQandA";
+  // const dataUrl = `${apiURL}${endPoint}`;
+  const [teacherUsername, setTeacherUsername] = useState([]);
+  // const [questions, setQuestions] = useState([]);
+
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
-  const teacherID = location.state.teacherID;
 
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
   const [overrideComment, setOverrideComment] = useState("");
   const [overrideScore, setOverrideScore] = useState("");
-  const [savedPupilID, setSavedPupilID] = useState("");
-
-  let editPupilID = location.state.pupilId;
-  if (savedPupilID !== "" && editPupilID !== savedPupilID) {
-    editPupilID = savedPupilID;
-  }
-
-  const pupilRecordEndPoint = "/get-pupil-record";
-  const pupilAnswersEndPoint = "/get-pupil-answers";
-  const pupilRecordURL = `${apiURL}${pupilRecordEndPoint}`;
-  const pupilAnswersURL = `${apiURL}${pupilAnswersEndPoint}`;
-
-  const [populator, setPopulator] = useState(false);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -42,99 +28,18 @@ function Form() {
     setDate(formattedDate);
   }, []);
 
-  useEffect(() => {
-    fetch(dataUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("There is no data to display");
-        }
-        return response.json();
-      })
-      .then((data) => setQuestions(data))
-      .catch((err) => {
-        console.error("Error fetching questions:", err.message);
-      });
+  const handleRadioChange = useCallback((questionIndex, answer_id) => {
+    const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === answer_id);
+    setSelectedAnswers((prevSelected) => ({
+      ...prevSelected,
+      [questionIndex]: answer_id,
+    }));
 
-    if (editPupilID) {
-      setPopulator(true);
-    }
-  }, [dataUrl, editPupilID, setPopulator]);
-
-  const handleRadioChange = useCallback(
-    (questionIndex, answer_id) => {
-      const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === answer_id);
-      setSelectedAnswers((prevSelected) => ({
-        ...prevSelected,
-        [questionIndex]: answer_id,
-      }));
-
-      setScores((prevScores) => ({
-        ...prevScores,
-        [questionIndex]: answer ? answer.answer_score : 0,
-      }));
-    },
-    [questions]
-  );
-
-  useEffect(() => {
-    if (populator) {
-      fetch(pupilRecordURL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ pupilID: editPupilID }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Unable to find existing Pupil Form");
-          }
-          return response.json();
-        })
-        .then((recordData) => {
-          setPupilName(recordData[0].pupil_nickname);
-          setOverrideComment(recordData[0].override_comment);
-          setOverrideScore(recordData[0].override_score);
-        })
-        .catch((err) => {
-          console.error("Error fetching existing Pupil Form:", err.message);
-        });
-
-      fetch(pupilAnswersURL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ pupilID: editPupilID }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Unable to find existing Pupil Form Answers");
-          }
-          return response.json();
-        })
-        .then((answerData) => {
-          for (let i = 0; i < answerData.length; i++) {
-            handleRadioChange(i, answerData[i].answer_id);
-            const editComment = answerData.map((oneCase) => {
-              return oneCase.teacher_comment;
-            });
-            setComments(editComment);
-          }
-        })
-        .catch((err) => {
-          console.error("Error fetching existing Pupil Form Answers:", err.message);
-        });
-    }
-  }, [
-    populator,
-    editPupilID,
-    pupilRecordURL,
-    pupilAnswersURL,
-    handleRadioChange,
-    setOverrideComment,
-    setOverrideScore,
-  ]);
+    setScores((prevScores) => ({
+      ...prevScores,
+      [questionIndex]: answer ? answer.answer_score : 0,
+    }));
+  }, []);
 
   const handleComment = (index, e) => {
     const updatedComments = [...comments];
@@ -150,12 +55,11 @@ function Form() {
             <div className="textField">
               <label>Teacher Name</label>
               <input
-                className="readOnlyInput"
+                className="textField"
                 value={teacherUsername}
-                tabIndex="-1"
+                onChange={(e) => setTeacherUsername(e.target.value)}
                 type="text"
                 placeholder="enter teacher name"
-                readOnly
               />
             </div>
             <div className="textField">
@@ -239,10 +143,7 @@ function Form() {
         selectedAnswers={selectedAnswers}
         questions={questions}
         comments={comments}
-        teacherID={teacherID}
         teacherName={teacherUsername}
-        pupilID={editPupilID}
-        setSavedPupilID={setSavedPupilID}
         pupilName={pupilName}
         date={date}
         overrideComment={overrideComment}

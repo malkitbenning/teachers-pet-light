@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PrintResult from "./PrintResult";
-import SaveFormButton from "./SaveFormButton";
 import "../styles/ShowResult.css";
-import BackToLandingPageButton from "./BackToLandingPageButton";
 
 function ShowResult({
   selectedAnswers,
@@ -23,7 +21,6 @@ function ShowResult({
   const [totalScore, setTotalScore] = useState(0);
 
   const [showErrorMessage, setShowErrorMessage] = useState(false);
-  const [saveMessage, setSaveMessage] = useState("");
 
   const handleShowResults = () => {
     const unansweredQuestions = questions.map((_, index) => selectedAnswers[index]).some((answerId) => !answerId);
@@ -58,7 +55,7 @@ function ShowResult({
   return (
     <>
       <div>
-        <div className="resultsBtn">
+        <div className="resultsBtnArea">
           {showErrorMessage && (
             <div className="error-msg">
               Please ensure you have entered a pupil name and answered all above questions.
@@ -86,29 +83,10 @@ function ShowResult({
                 overrideComment={overrideComment}
                 setOverrideComment={setOverrideComment}
               />
-              <p className="saveMessage">{saveMessage}</p>
               <div className="buttons-after-summary">
-                <SaveFormButton
-                  selectedAnswers={selectedAnswers}
-                  comments={comments}
-                  teacherID={teacherID}
-                  pupilID={pupilID}
-                  setSavedPupilID={setSavedPupilID}
-                  pupilName={pupilName}
-                  date={date}
-                  overrideScore={overrideScore}
-                  overrideComment={overrideComment}
-                  saveMessage={saveMessage}
-                  setSaveMessage={setSaveMessage}
-                />
                 <button className="printBtn" onClick={handlePrint}>
                   Print
                 </button>
-                <BackToLandingPageButton
-                  teacherID={teacherID}
-                  teacherUsername={teacherName}
-                  setSaveMessage={setSaveMessage}
-                />
               </div>
             </div>
           </>
