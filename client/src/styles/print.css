@@ -46,10 +46,16 @@
     width: 100%;
     border: none;
   }
+
+  
+
   .result-title {
     display: inline !important;
     padding-top: 0px;
   }
+
+
+
   #tableToPrint {
     width: 100%;
     display: table;

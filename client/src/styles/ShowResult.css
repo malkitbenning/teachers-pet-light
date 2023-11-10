@@ -65,6 +65,11 @@ input:focus {
   display: inline-block;
 }
 
+.comment-title {
+  color: black;
+ 
+}
+
 .error-msg {
   color: red;
   padding: 10px;
