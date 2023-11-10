@@ -2,8 +2,8 @@ import "./App.css";
 import "./formStyle.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Form from "./components/Form";
-import LoginForm from "./components/LoginForm";
-import LandingPage from "./components/LandingPage";
+// import LoginForm from "./components/LoginForm";
+// import LandingPage from "./components/LandingPage";
 
 
 function App() {
@@ -15,10 +15,9 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/landingPage" element={<LandingPage />} />
-          <Route path="/form" element={<Form />} />
-          
+          <Route path="/" element={<Form />} />
+          {/* <Route path="/landingPage" element={<LandingPage />} />
+          <Route path="/form" element={<Form />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
