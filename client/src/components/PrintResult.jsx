@@ -63,7 +63,9 @@ function PrintResult({
                     </td>
                   </tr>
                   <tr>
-                    <td colSpan="12">Teacher comment: {commentForAnswer}</td>
+                    <td colSpan="12">
+                      <span className="comment-title">Teacher comment: </span> {commentForAnswer}
+                    </td>
                   </tr>
                 </div>
               </React.Fragment>

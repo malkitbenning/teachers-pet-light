@@ -5,11 +5,8 @@ import questions from "./data/questions.json";
 import Appendices from "./Appendices";
 
 function Form() {
-  // const apiURL = process.env.REACT_APP_DEV_URL || "https://35.178.178.168";
-  // const endPoint = "/getQandA";
-  // const dataUrl = `${apiURL}${endPoint}`;
+
   const [teacherUsername, setTeacherUsername] = useState([]);
-  // const [questions, setQuestions] = useState([]);
 
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
@@ -93,7 +90,7 @@ function Form() {
                 <tr className="question">
                   <td colSpan="4">
                     <h3>
-                      Criterion{que.criterion_code}: {que.question_text}
+                      Criterion {que.criterion_code}: {que.question_text}
                     </h3>
                   </td>
                   <td colSpan="2">
